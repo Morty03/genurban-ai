@@ -1,0 +1,14 @@
+venv/
+node_modules/
+__pycache__/
+.env
+
+ml_engine/data/
+
+backend/keys/
+
+*.npy
+*.tif
+*.pt
+*.pth
+*.json

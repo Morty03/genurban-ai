@@ -1,0 +1,102 @@
+/* src/index.css - Tailwind entry (safe ordering) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------
+   Base overrides (use @layer base)
+   ------------------------------------------------ */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* small accessible helper */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+}
+
+/* ------------------------------------------------
+   Component utilities (use @layer components)
+   Put any @apply usages here — AFTER @tailwind utilities
+   ------------------------------------------------ */
+@layer components {
+  /* Soft shadow card */
+  .shadow-soft {
+    /* avoid @apply gap-2 / layout utilities here; use simple box-shadow */
+    box-shadow: 0 2px 15px -3px rgba(0,0,0,0.5), 0 10px 20px -8px rgba(0,0,0,0.6);
+  }
+
+  /* Card hover transform (use Tailwind utilities via @apply) */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+
+  /* Primary button (use @apply only for atomic utilities) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl font-semibold;
+    background: linear-gradient(90deg, rgba(16,24,32,0.9) 0%, #06b6d4 55%, #2563eb 100%);
+    color: white;
+    box-shadow: 0 6px 18px -8px rgba(6,182,212,0.25);
+  }
+  .btn-primary:hover { filter: brightness(1.03); transform  : translateY(-2px); }
+  .btn-primary:disabled { opacity: .6; transform: none; cursor: not-allowed; box-shadow: none; }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-2xl font-medium border;
+    background: transparent;
+    border-color: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.9);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.09); }
+
+  /* Map control compact button (avoid applying layout utilities like gap-2 here directly) */
+  .map-ctrl {
+    @apply inline-flex items-center px-3 py-2 rounded-2xl text-sm font-medium;
+    background: rgba(17,17,17,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.92);
+  }
+}
+
+/* ------------------------------------------------
+   Small helpers and fallbacks (no @apply here)
+   ------------------------------------------------ */
+:root {
+  --focus-ring: rgba(6,182,212,0.16);
+}
+
+:focus-visible {
+  box-shadow: 0 0 0 6px var(--focus-ring);
+  border-radius: 8px;
+}
+
+/* dark scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 999px; }
+
+/* range input fallback visuals */
+input[type="range"] { -webkit-appearance:none; appearance:none; width:100%; height:6px; background:transparent; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:#06b6d4; border:2px solid #0b0b0b; margin-top:-6px; }
+
+input[type="range"]::-webkit-slider-thumb {-webkit-appearance:none;width:18px;heigth:18px:border-radius:50%;backgorund:#06b6d4:border:2px solid #  }
+
+
+   
